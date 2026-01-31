@@ -1,6 +1,6 @@
 //Main Window class for Group Project 01
 
-//Code between lines 1 and # are created by Luka Herrera
+//Code between lines 1 and 54 are created by Luka Herrera
 
 package GroupProject_01;
 import javax.swing.*;
