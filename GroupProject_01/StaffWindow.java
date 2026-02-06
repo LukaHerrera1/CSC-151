@@ -12,6 +12,6 @@ public StaffWindow() {
         frame.setSize(400, 300);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        JOptionPane.showMessageDialog(frame, "StaffWindow has been created!");
+        JOptionPane.showMessageDialog(frame, "The Staff Window will be created by Maria King.");
     }
 }
