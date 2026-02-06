@@ -1,6 +1,6 @@
-//Main Window class for Group Project 01
+//Main Window class for Group Project 01.
 
-//Code between lines 1 and 54 are created by Luka Herrera
+//Code between lines 1 and 54 are created by Luka Herrera.
 
 package GroupProject_01;
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class MainWindow {
         //Create New Main Window.
         JFrame frame = new JFrame("Seattle Seahawks Team Manager");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(400, 300);
         frame.setVisible(true);
         frame.setLayout(new FlowLayout());
 
@@ -22,21 +22,21 @@ public class MainWindow {
         JButton addCoachButton = new JButton("Coaches");    
         JButton addStaffButton = new JButton("Staff");
 
-        //Plater Button New Window Section (Go to PlayersWindow.Java to edit info).
+        //Plater Button New Window Section (Go to PlayersWindow.java to edit info).
         addPlayerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new PlayersWindow();
                 }
             });
         
-        //Coach Button New Window Section (Go to CoachesWindow.Java to edit info)..
+        //Coach Button New Window Section (Go to CoachesWindow.java to edit info)..
         addCoachButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new CoachesWindow();
             }
         });
 
-        //Staff Button New WindowSection (Go to StaffWindow.Java to edit info).
+        //Staff Button New WindowSection (Go to StaffWindow.java to edit info).
         addStaffButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new StaffWindow();
