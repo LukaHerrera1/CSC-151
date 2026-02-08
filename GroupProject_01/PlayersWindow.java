@@ -30,6 +30,7 @@ public class PlayersWindow {
         DefaultMutableTreeNode Center = new DefaultMutableTreeNode("Center");
         DefaultMutableTreeNode FullBack = new DefaultMutableTreeNode("Full Back");
         DefaultMutableTreeNode NoseBack = new DefaultMutableTreeNode("Nose Back");
+        DefaultMutableTreeNode Tackles = new DefaultMutableTreeNode("Tackles");
 
         // Players 1=13 (Done By Luka Herrera)
         DefaultMutableTreeNode ElijahArroyo = new DefaultMutableTreeNode("Elijah Arroyo");
@@ -51,7 +52,7 @@ public class PlayersWindow {
         Tightends.add(AjBarner);
         Widereceivers.add(JakeBobo);
         Guards.add(AnthonyBradford);
-        Linebackers.add(CharlesCross);
+        Tackles.add(CharlesCross);
         Guards.add(ChristianHayes);
         Quarterbacks.add(SamDarnold);
         Punter.add(MichealDickerson);
