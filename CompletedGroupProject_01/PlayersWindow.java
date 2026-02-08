@@ -75,7 +75,7 @@ public class PlayersWindow {
         DefaultMutableTreeNode RobbieOuzts = new DefaultMutableTreeNode("Robbie Ouzts");
         DefaultMutableTreeNode BrandonPili = new DefaultMutableTreeNode("Brandon Pili");
         
-         // Player 38 - 53 (Done by Maria King)
+        // Players 38 - 53 (Done by Maria King)
         DefaultMutableTreeNode BradyRussell = new DefaultMutableTreeNode("Brady Russell");
         DefaultMutableTreeNode EricSaubert = new DefaultMutableTreeNode("Eric Saubert");
         DefaultMutableTreeNode RashidShaheed = new DefaultMutableTreeNode("Rashid Shaheed");
@@ -84,7 +84,7 @@ public class PlayersWindow {
         DefaultMutableTreeNode JalenSundell = new DefaultMutableTreeNode("Jalen Sundell");
         DefaultMutableTreeNode ChazzSurratt = new DefaultMutableTreeNode("Chazz Surratt");
         DefaultMutableTreeNode DrakeThomas = new DefaultMutableTreeNode("Drake Thomas");
-        DefaultMutableTreeNode KennethWalker = new DefaultMutableTreeNode("Kenneth Walker III");
+        DefaultMutableTreeNode KennethWalkerIII = new DefaultMutableTreeNode("Kenneth Walker III");
         DefaultMutableTreeNode LeonardWilliams = new DefaultMutableTreeNode("Leonard Williams");
         DefaultMutableTreeNode DevonWitherspoon = new DefaultMutableTreeNode("Devon Witherspoon");
         DefaultMutableTreeNode RiqWoolen = new DefaultMutableTreeNode("Riq Woolen");
@@ -97,7 +97,7 @@ public class PlayersWindow {
         Tightends.add(AjBarner);
         Widereceivers.add(JakeBobo);
         Guards.add(AnthonyBradford);
-        Linebackers.add(CharlesCross);
+        Tackles.add(CharlesCross);
         Guards.add(ChristianHayes);
         Quarterbacks.add(SamDarnold);
         Punter.add(MichealDickerson);
@@ -106,7 +106,13 @@ public class PlayersWindow {
         Linebackers.add(DerickHall);
         Linebackers.add(JaydenIvey);
         NoseBack.add(GeorgeHolani); 
-
+        FullBack.add(BradyRussell);
+        NoseBack.add(KennethWalkerIII);
+        DefensiveTackle.add(LeonardWilliams);
+        Cornerbacks.add(DevonWitherspoon);
+        Guards.add(ChrisStoll);
+        Center.add(JalenSundell);
+        Guards.add(JoshJones);
         Quarterbacks.add(JalenMilroe);
         Linebackers.add(BoyeMafe);
         Linebackers.add(UchennaNwosu);
@@ -121,7 +127,6 @@ public class PlayersWindow {
         Center.add(OluOluwatimi);
         FullBack.add(RobbieOuzts);
         NoseBack.add(BrandonPili);
-
         Quarterbacks.add(DrewLock);
         Linebackers.add(ErnestJones);
         Linebackers.add(TyriceKnight);
