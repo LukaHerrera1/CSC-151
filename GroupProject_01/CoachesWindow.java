@@ -1,5 +1,7 @@
 //Coaches Window Class.
 
+//All Code in ths file was written by Luka Herrera.
+
 package GroupProject_01;
 
 import java.util.HashMap;
@@ -141,7 +143,7 @@ public class CoachesWindow {
         );
 
         coachDetails.put(
-                "Inside Linebackers Coach",
+                "Inside Linbackers Coach",
                 "Name: Kirk Olivadotti\n Role: Coaches middle linebackers\n Experience: 23 years"
         );
 
@@ -162,7 +164,8 @@ public class CoachesWindow {
 
         coachDetails.put(
                 "Safeties Coach",
-                "Name: Karl Scott\n Role: Coaches outside and inside cornerbacks and oversees passing defense schemes\n Experience: 5 years"
+                "Name: Jeff Howard\n Role: Coaches strong and free safeties\n Experience: 13 years" 
+                                
         );
 
         coachDetails.put(
