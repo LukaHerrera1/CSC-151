@@ -2,7 +2,7 @@
 
 //All Code in ths file was written by Luka Herrera.
 
-package GroupProject_01;
+package CompletedGroupProject_01;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -39,7 +39,7 @@ public class MainWindow {
         //Staff Button New WindowSection (Go to StaffWindow.java to edit info).
         addStaffButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new StaffWindow();
+                new StaffMembers();
             }
         });
 
