@@ -65,6 +65,7 @@ public class PlayersWindow {
         root.add(Quarterbacks);
         root.add(Linebackers);
         root.add(Guards);
+        root.add(Tackles);
         root.add(DefensiveEnd);
         root.add(DefensiveTackle);
         root.add(Kicker);
