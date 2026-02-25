@@ -15,48 +15,9 @@ import java.util.Scanner;
 
 public class CoachesWindow {
 
-       // Coach dropdown options
-    private String[] headCoaches = {
-            "Head Coach",
-            "Assistant Head Coach",
-    };
-
-    private String[] coordinators = {
-            "Offensive Coordinator",
-            "Defensive Coordinator",
-            "Special Teams Coordinator"
-    };
-
-    private String[] positionCoaches = {
-            "Quarterbacks Coach",
-            "Wide Receivers Coach",
-            "Tight Ends Coach",
-            "Offensive Line Coach",
-            "Run Game Coordinator/Senior Offensive Advisor",
-            "Offensive Assistant/Quarterbacks",
-            "Run Game Specialist/Assistant Offensive Line",
-            "Offensive Assistant/Quality Control - OL",
-            "Assistant Special Teams",
-            "Offensive Assistant",
-            "Offensive Passing Game Coordinator",
-            "Inside Linbackers Coach",
-            "Outside Linebackers Coach",
-            "Defensive Line Coach",
-            "Defensive Passing Game Coordinator/Defensive Backs Coach",
-            "Safeties Coach",
-            "Defensive Assistant/Defensive Backs",
-            "Defensive Assistant/LineBackers",
-            "Defensive Intern",
-            "Director of Player Performance and Development",
-            "Head Strength Coach",
-            "Associate Head Strength Coach",
-            "Strength and Conditioning Assistant 1",
-            "Strength and Conditioning Assistant 2",
-            "Strength and Conditioning Assistant 3",
-    };
 
     // Coach details map
-    private Map<String, String> coachDetails = new HashMap<>();
+    private Map<String, String[]> coachDetails = new HashMap<>();
 
     // Constructor (called from main menu)
     public CoachesWindow() {
@@ -65,22 +26,24 @@ public class CoachesWindow {
     }
 
     private void loadCoachDetails() {
+
+        coachDetails.clear();
+
         try { File file = new File("GroupProject_02_WORKING_HerreraLuka/coaches.csv");
                 Scanner scanner = new Scanner(file);
                 scanner.nextLine(); // Skip header
+
                 while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                String[] parts = line.split(",");
-                   String title = parts[1].trim();
-                   String name = parts[2].trim();
-                   String experience = parts[3].trim();
-                   String role = parts[4].trim();
+                
+                String[] parts = scanner.nextLine().split(",");
+                String category = parts[0].trim();
+                String title = parts[1].trim();
+                String name = parts[2].trim();
+                String experience = parts[3].trim();
+                String role = parts[4].trim();
 
                    String details = "Name: " + name + "\nExperience: " + experience + "\nRole: " + role;
-                         coachDetails.put(title, details);
-
-                         System.out.println("Loaded: " + title);
-
+                         coachDetails.put(title, new String[]{category, details});
                     }
                 scanner.close();
                 }
@@ -89,9 +52,16 @@ public class CoachesWindow {
         }
     }
 
+private String[] getCoachesByCategory(String category) {
+        return coachDetails.entrySet().stream()
+                .filter(entry -> entry.getValue()[0].equalsIgnoreCase(category))
+                .map(Map.Entry::getKey)
+                .toArray(String[]::new);
+    }
+
 private void writeCoachToFile(String category, String title, String name, String experience, String role) {
         try {
-            FileWriter writer = new FileWriter("GroupProject_02_WORKING_HerreraLuka/coaches.csv");
+            FileWriter writer = new FileWriter("GroupProject_02_WORKING_HerreraLuka/coaches.csv", true);
             
             writer.write("\n" + category + "," + title + "," + name + "," + experience + "," + role);
 
@@ -101,9 +71,6 @@ private void writeCoachToFile(String category, String title, String name, String
             e.printStackTrace();
         }
 }
-
-
-    
 
     // Main menu
     private void showCoachesMenu() {
@@ -141,21 +108,36 @@ private void writeCoachToFile(String category, String title, String name, String
     // Head Coach selection
     private void showHeadCoach() {
 
+        String[] options = getCoachesByCategory("Head Coach");
+        
+        if (options.length == 0) {
+            JOptionPane.showMessageDialog(null, "No Head Coaches available.");
+            showCoachesMenu();
+            return;
+        }
+
         String coach = (String) JOptionPane.showInputDialog(
                 null,
-                "Select the Head Coach:",
+                "Select a Head Coach:",
                 "Head Coach",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                headCoaches,
-                headCoaches[0]
+                options,
+                options[0]
         );
-
         showCoachDetails(coach);
     }
 
     // Coordinators selection
     private void showCoordinators() {
+
+       String[] options = getCoachesByCategory("Coordinator");
+        
+        if (options.length == 0) {
+            JOptionPane.showMessageDialog(null, "No Coordinators available.");
+            showCoachesMenu();
+            return;
+        }
 
         String coach = (String) JOptionPane.showInputDialog(
                 null,
@@ -163,8 +145,8 @@ private void writeCoachToFile(String category, String title, String name, String
                 "Coordinators",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                coordinators,
-                coordinators[0]
+                options,
+                options[0]
         );
 
         showCoachDetails(coach);
@@ -173,27 +155,69 @@ private void writeCoachToFile(String category, String title, String name, String
     // Position Coaches selection
     private void showPositionCoaches() {
 
+        String[] options = getCoachesByCategory("Position Coach");
+        
+        if (options.length == 0) {
+            JOptionPane.showMessageDialog(null, "No Position Coaches available.");
+            showCoachesMenu();
+            return;
+        }
+
         String coach = (String) JOptionPane.showInputDialog(
                 null,
                 "Select a Position Coach:",
                 "Position Coaches",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                positionCoaches,
-                positionCoaches[0]
+                options,
+                options[0]
         );
 
         showCoachDetails(coach);
     }
 
     private void addCoach() {
-        String category = JOptionPane.showInputDialog("Enter Category: ");
-        String title = JOptionPane.showInputDialog("Enter Title: ");
-        String name = JOptionPane.showInputDialog("Enter Name: ");
-        String experience = JOptionPane.showInputDialog("Enter Experience: ");
-        String role = JOptionPane.showInputDialog("Enter Role: ");
+        String[] categories = {"Head Coach", "Coordinator", "Position Coach"};
+        String category = (String) JOptionPane.showInputDialog(
+                null,
+                "Select Category:",
+                "Add Coach",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                categories,
+                categories[0]
+        );
+      if (category == null) {
+        showCoachesMenu();
+        return;
+    }
 
+    String title = JOptionPane.showInputDialog("Enter Title:");
+    if (title == null) {
+        showCoachesMenu();
+        return;
+    }
+
+    String name = JOptionPane.showInputDialog("Enter Name:");
+    if (name == null) {
+        showCoachesMenu();
+        return;
+    }
+
+    String experience = JOptionPane.showInputDialog("Enter Experience:");
+    if (experience == null) {
+        showCoachesMenu();
+        return;
+    }
+
+    String role = JOptionPane.showInputDialog("Enter Role:");
+    if (role == null) {
+        showCoachesMenu();
+        return;
+    }
         writeCoachToFile(category, title, name, experience, role);
+
+        loadCoachDetails();
 
         JOptionPane.showMessageDialog(null, "Coach added successfully!");
     }
@@ -201,8 +225,8 @@ private void writeCoachToFile(String category, String title, String name, String
     // Display coach info
     private void showCoachDetails(String coach) {
 
-        if (coach != null) {
-            String details = coachDetails.get(coach);
+        if (coach != null && coachDetails.containsKey(coach)) {
+            String details = coachDetails.get(coach)[1];
 
             JOptionPane.showMessageDialog(
                     null,
