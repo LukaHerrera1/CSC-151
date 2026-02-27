@@ -31,17 +31,35 @@ public class CoachesWindow {
 
         try { File file = new File("GroupProject_02_WORKING_HerreraLuka/coaches.csv");
                 Scanner scanner = new Scanner(file);
-                scanner.nextLine(); // Skip header
+
+                if (scanner.hasNextLine()) {
+                   scanner.nextLine(); // Skip header
+                }
+                
 
                 while (scanner.hasNextLine()) {
                 
-                String[] parts = scanner.nextLine().split(",");
+                String line = scanner.nextLine().trim();
+                if (line.isEmpty()) {
+                    continue; // Skip empty lines
+                }  
+
+                String[] parts = line.split(",");
+
+                if (parts.length < 5) {
+                    continue; // Skip malformed lines
+                }
+
                 String category = parts[0].trim();
                 String title = parts[1].trim();
                 String name = parts[2].trim();
                 String experience = parts[3].trim();
                 String role = parts[4].trim();
 
+                if (category.equalsIgnoreCase("null") || title.equalsIgnoreCase("null") || name.equalsIgnoreCase("null") || experience.equalsIgnoreCase("null") || role.equalsIgnoreCase("null")) {
+                    continue; // Skip entries with "null" values
+                }
+                
                    String details = "Name: " + name + "\nExperience: " + experience + "\nRole: " + role;
                          coachDetails.put(title, new String[]{category, details});
                     }
