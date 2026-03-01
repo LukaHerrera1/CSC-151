@@ -1,7 +1,4 @@
-//Players Window Class.
-
-package JavaCode_GroupProject_02_WORKING_HerreraLuka;
-
+package JavaCode_GroupProject_02_POLISHED_HerreraLuka;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
