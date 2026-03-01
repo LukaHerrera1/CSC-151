@@ -1,6 +1,6 @@
 //All Code was written by Luka Herrera in this file.
 
-package GroupProject_02_WORKING_HerreraLuka;
+package JavaCode_GroupProject_02_WORKING_HerreraLuka;
 
 import javax.swing.*;
 import javax.swing.tree.*;

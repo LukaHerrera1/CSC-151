@@ -2,7 +2,7 @@
 
 //ALL CODE IN THIS FILE WAS WRITTEN BY LUKA HERRERA.
 
-package GroupProject_02_WORKING_HerreraLuka;
+package JavaCode_GroupProject_02_WORKING_HerreraLuka;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -231,7 +231,7 @@ public class CoachesWindow {
 
         coachDetails.clear();
 
-        try { File file = new File("GroupProject_02_WORKING_HerreraLuka/coaches.csv");
+        try { File file = new File("JavaCode_GroupProject_02_WORKING_HerreraLuka/coaches.csv");
                 Scanner scanner = new Scanner(file);
 
                 if (scanner.hasNextLine()) {
@@ -281,7 +281,7 @@ private String[] getCoachesByCategory(String category) {
 
 private void writeCoachToFile(String category, String title, String name, String experience, String role) {
         try {
-            FileWriter writer = new FileWriter("GroupProject_02_WORKING_HerreraLuka/coaches.csv", true);
+            FileWriter writer = new FileWriter("JavaCode_GroupProject_02_WORKING_HerreraLuka/coaches.csv", true);
             
             writer.write("\n" + category + "," + title + "," + name + "," + experience + "," + role);
 

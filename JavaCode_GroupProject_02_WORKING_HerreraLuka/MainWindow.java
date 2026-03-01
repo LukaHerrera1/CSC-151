@@ -2,7 +2,7 @@
 
 //All Code in ths file was written by Luka Herrera.
 
-package GroupProject_02_WORKING_HerreraLuka;
+package JavaCode_GroupProject_02_WORKING_HerreraLuka;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
