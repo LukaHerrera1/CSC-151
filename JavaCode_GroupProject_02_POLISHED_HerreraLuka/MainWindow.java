@@ -1,40 +1,49 @@
-//All Code in ths file was written by Luka Herrera.
-
 package JavaCode_GroupProject_02_POLISHED_HerreraLuka;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.util.List;
 
 public class MainWindow {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Seattle Seahawks Team Manager");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    public MainWindow(List<TeamMember> players,
+                      List<TeamMember> coaches,
+                      List<TeamMember> staff) {
+
+        JFrame frame = new JFrame("Football Team Manager");
         frame.setSize(400, 300);
-        frame.setVisible(true);
-        frame.setLayout(new FlowLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(3, 1));
 
-        JButton addPlayerButton = new JButton("Players");
-        JButton addCoachButton = new JButton("Coaches");    
-        JButton addStaffButton = new JButton("Staff");
+        JButton playersBtn = new JButton("Players");
+        JButton coachesBtn = new JButton("Coaches");
+        JButton staffBtn   = new JButton("Staff");
 
-        addPlayerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new PlayersWindow();
-                }
-            });
-        addCoachButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new CoachesWindow();
-            }
-        });
-        addStaffButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new StaffWindow();
-            }
-        });
-        frame.add(addPlayerButton);
-        frame.add(addCoachButton);  
-        frame.add(addStaffButton);
+        playersBtn.addActionListener(e -> new PlayersWindow(players));
+        coachesBtn.addActionListener(e -> new CoachesWindow());
+        staffBtn.addActionListener(e -> new StaffWindow(staff));
+
+        frame.add(playersBtn);
+        frame.add(coachesBtn);
+        frame.add(staffBtn);
+
         frame.setVisible(true);
+    }
+    public static void main(String[] args) {
+
+        // Load data from CSV files
+        List<TeamMember> players =
+                CSVLoader.loadTeam(
+                "JavaCode_GroupProject_02_POLISHED_HerreraLuka/players.csv");
+
+        List<TeamMember> coaches =
+                CSVLoader.loadTeam(
+                "JavaCode_GroupProject_02_POLISHED_HerreraLuka/coaches.csv");
+
+        List<TeamMember> staff =
+                CSVLoader.loadTeam(
+                "JavaCode_GroupProject_02_POLISHED_HerreraLuka/staff.csv");
+
+        // Launch GUI
+        new MainWindow(players, coaches, staff);
     }
 }

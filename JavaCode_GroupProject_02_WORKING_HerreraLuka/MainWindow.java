@@ -23,11 +23,11 @@ public class MainWindow {
         JButton addStaffButton = new JButton("Staff");
 
         //Plater Button New Window Section (Go to PlayersWindow.java to edit info).
-        addPlayerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new PlayersWindow();
-                }
-            });
+       addPlayerButton.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        new PlayersWindow(); // THIS caused your tree to not expand
+    }
+});
         
         //Coach Button New Window Section (Go to CoachesWindow.java to edit info)..
         addCoachButton.addActionListener(new ActionListener() {
@@ -38,10 +38,10 @@ public class MainWindow {
 
         //Staff Button New WindowSection (Go to StaffWindow.java to edit info).
         addStaffButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new StaffWindow();
-            }
-        });
+    public void actionPerformed(ActionEvent e) {
+        StaffMembers.main(null);
+    }
+});
 
         //Adding buttons to frame.
         frame.add(addPlayerButton);
