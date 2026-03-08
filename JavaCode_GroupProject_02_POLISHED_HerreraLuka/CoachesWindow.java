@@ -20,7 +20,7 @@ public class CoachesWindow {
         try { File file = new File("JavaCode_GroupProject_02_POLISHED_HerreraLuka/coaches.csv");
                 Scanner scanner = new Scanner(file);
                 if (scanner.hasNextLine()) {
-                   scanner.nextLine();
+                   scanner.nextLine(); 
                 }
                 while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
@@ -29,18 +29,16 @@ public class CoachesWindow {
                 }  
                 String[] parts = line.split(",");
                 if (parts.length < 5) {
-                    continue; 
+                    continue;
                 }
                 String category = parts[0].trim();
                 String title = parts[1].trim();
                 String name = parts[2].trim();
                 String experience = parts[3].trim();
                 String role = parts[4].trim();
-
                 if (category.equalsIgnoreCase("null") || title.equalsIgnoreCase("null") || name.equalsIgnoreCase("null") || experience.equalsIgnoreCase("null") || role.equalsIgnoreCase("null")) {
                     continue;
                 }
-
                    String details = "Name: " + name + "\nExperience: " + experience + "\nRole: " + role;
                          coachDetails.put(title, new String[]{category, details});
                     }
@@ -58,7 +56,7 @@ public class CoachesWindow {
     }
     private void writeCoachToFile(String category, String title, String name, String experience, String role) {
         try {
-            FileWriter writer = new FileWriter("JavaCode_GroupProject_02_POLISHED_HerreraLuka/coaches.csv", true);
+            FileWriter writer = new FileWriter("JavaCode_GroupProject_02_WORKING_HerreraLuka/coaches.csv", true);
             writer.write("\n" + category + "," + title + "," + name + "," + experience + "," + role);
             writer.close();
         } catch (Exception e) {

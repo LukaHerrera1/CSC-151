@@ -1,4 +1,4 @@
-// Player Window Class
+//ALL CODE IN THIS FILE WAS WRITTEN BY LUKA HERRERA.
 package JavaCode_GroupProject_02_WORKING_HerreraLuka;
 
 import java.awt.*;

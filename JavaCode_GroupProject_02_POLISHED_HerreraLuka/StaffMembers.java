@@ -1,7 +1,6 @@
 //ALL CODE IN THIS FILE WAS WRITTEN BY MARIA KING. THE MAIN AND SECONDARY STAFF CSV FILES WERE MADE BY MARIA KING
 
-package JavaCode_GroupProject_02_WORKING_HerreraLuka;  
-
+package JavaCode_GroupProject_02_POLISHED_HerreraLuka;  
 import javax.swing.*;
 import javax.swing.tree.*;
 
@@ -9,7 +8,7 @@ public class StaffMembers {
     public static void readMainStaffFromCSV(String filename) {
         java.util.List<StaffMember> staffList = new java.util.ArrayList<>();
         try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(filename))) {
-            String line = reader.readLine(); // Skip header
+            String line = reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",", 2);
                 if (parts.length == 2) {
@@ -25,8 +24,6 @@ public class StaffMembers {
             System.err.println("Error reading from file: " + e.getMessage());
         }
     }
-
-
     public static void writeMainStaffToCSV(String filename) {
         try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileWriter(filename))) {
             writer.println("Name,Title");
@@ -39,15 +36,11 @@ public class StaffMembers {
             System.err.println("Error writing to file: " + e.getMessage());
         }
     }
-
     public StaffMembers() {
-
         readMainStaffFromCSV("JavaCode_GroupProject_02_WORKING_HerreraLuka/main_staff.csv");
-
         JFrame frame = new JFrame("Staff Members");
         frame.setSize(400, 500);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Staff Members");
         DefaultMutableTreeNode mainStaffFolder = new DefaultMutableTreeNode("Main Staff");
         for (StaffMember member : mainStaff) {
@@ -159,7 +152,6 @@ public class StaffMembers {
         frame.add(scrollPane);
         frame.setVisible(true);
     }
-
     public static class StaffMember {
         public String name;
         public String title;
@@ -168,10 +160,7 @@ public class StaffMembers {
             this.title = title;
         }
     }
-
-
     public static StaffMember[] mainStaff = new StaffMember[0];
-
     public static void main(String[] args) {
         String csvFileName = "main_staff.csv";
         java.io.File csvFile = new java.io.File(csvFileName);

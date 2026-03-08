@@ -1,27 +1,23 @@
 //ALL CODE WRITTEN BY DOMONIC YARNELL AND PLAYER INFO IN player.csv; CODE WAS FORMATED BY LUKA HERRERA TO FIT INTO ONE FILE.
-package JavaCode_GroupProject_02_WORKING_HerreraLuka;
 
+package JavaCode_GroupProject_02_POLISHED_HerreraLuka;
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.io.*;
 import java.util.*;
 
 public class Players {
-
     public static class TeamMember {
         private String name, position, number;
-
         public TeamMember(String name, String position, String number) {
             this.name = name;
             this.position = position;
             this.number = number;
         }
-
         public String getName() { return name; }
         public String getPosition() { return position; }
         public String getNumber() { return number; }
     }
-
     private static List<TeamMember> loadPlayers(String fileName) {
         List<TeamMember> players = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -43,42 +39,31 @@ public class Players {
         }
         return players;
     }
-
-
     public Players() {
         JFrame frame = new JFrame("Players");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Players");
         Map<String, DefaultMutableTreeNode> positionMap = new HashMap<>();
-
-        List<TeamMember> players = loadPlayers("JavaCode_GroupProject_02_WORKING_HerreraLuka/player.csv"); // <-- CSV file
-
-        // Add positions and players
+        List<TeamMember> players = loadPlayers("JavaCode_GroupProject_02_POLISHED_HerreraLuka/player.csv"); // <-- CSV file
         for (TeamMember player : players) {
             String position = player.getPosition();
             DefaultMutableTreeNode positionNode = positionMap.get(position);
-
             if (positionNode == null) {
                 positionNode = new DefaultMutableTreeNode(position);
                 positionMap.put(position, positionNode);
                 root.add(positionNode);
             }
-
             DefaultMutableTreeNode playerNode = new DefaultMutableTreeNode(player.getName() + " (#" + player.getNumber() + ")");
             positionNode.add(playerNode);
         }
-
         JTree tree = new JTree(root);
         tree.setRootVisible(true);
         tree.expandRow(0); // expand root by default
-
         JScrollPane scrollPane = new JScrollPane(tree);
         frame.add(scrollPane);
         frame.setVisible(true);
     }
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Players());
     }

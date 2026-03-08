@@ -1,4 +1,4 @@
-//Main Window class for Group Project 01.
+//Main Window class for Group Project 02.
 
 //All Code in ths file was written by Luka Herrera.
 

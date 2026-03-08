@@ -1,26 +1,42 @@
+//ALL CODE IN THIS FILE WAS WRITTEN BY LUKA HERRERA.
+
 package JavaCode_GroupProject_02_POLISHED_HerreraLuka;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
-import java.util.List;
+import java.io.FileWriter;
 
 public class StaffWindow {
-
-    public StaffWindow(List<TeamMember> team) {
-
-        JFrame frame = new JFrame("Staff");
-        frame.setSize(400, 400);
-
-        DefaultListModel<String> model = new DefaultListModel<>();
-
-        for (TeamMember member : team) {
-            if (member.getType().equals("Staff")) {
-                model.addElement(member.toString());
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Staff Members");
+        frame.setSize(400, 300);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setLayout(new FlowLayout());
+        JButton ViewStaffButton = new JButton("View Staff");
+        JButton addStaffButton = new JButton("Add Staff");
+        ViewStaffButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+        StaffMembers.main(null);
             }
-        }
-
-        JList<String> list = new JList<>(model);
-        JScrollPane scrollPane = new JScrollPane(list);
-
-        frame.add(scrollPane);
+    });
+        addStaffButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String name = JOptionPane.showInputDialog("Enter name:");
+                    String title = JOptionPane.showInputDialog("Enter title:");
+                    if (name == null || title == null) return;
+                    FileWriter writer = new FileWriter("JavaCode_GroupProject_02_POLISHED_HerreraLuka/main_staff.csv", true);
+                    writer.write(name + "," + title + "\n");
+                    writer.close();
+                    JOptionPane.showMessageDialog(null, "Staff member added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        frame.add(ViewStaffButton);
+        frame.add(addStaffButton);
         frame.setVisible(true);
     }
 }
