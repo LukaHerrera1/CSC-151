@@ -22,7 +22,7 @@ public class Players {
         List<TeamMember> players = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
-            br.readLine(); // skip header
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
                 String[] data = line.split(",");
@@ -45,7 +45,7 @@ public class Players {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Players");
         Map<String, DefaultMutableTreeNode> positionMap = new HashMap<>();
-        List<TeamMember> players = loadPlayers("JavaCode_GroupProject_02_POLISHED_HerreraLuka/player.csv"); // <-- CSV file
+        List<TeamMember> players = loadPlayers("JavaCode_GroupProject_02_POLISHED_HerreraLuka/player.csv");
         for (TeamMember player : players) {
             String position = player.getPosition();
             DefaultMutableTreeNode positionNode = positionMap.get(position);
@@ -59,7 +59,7 @@ public class Players {
         }
         JTree tree = new JTree(root);
         tree.setRootVisible(true);
-        tree.expandRow(0); // expand root by default
+        tree.expandRow(0);
         JScrollPane scrollPane = new JScrollPane(tree);
         frame.add(scrollPane);
         frame.setVisible(true);

@@ -56,7 +56,7 @@ public class CoachesWindow {
     }
     private void writeCoachToFile(String category, String title, String name, String experience, String role) {
         try {
-            FileWriter writer = new FileWriter("JavaCode_GroupProject_02_WORKING_HerreraLuka/coaches.csv", true);
+            FileWriter writer = new FileWriter("JavaCode_GroupProject_02_POLISHED_HerreraLuka/coaches.csv", true);
             writer.write("\n" + category + "," + title + "," + name + "," + experience + "," + role);
             writer.close();
         } catch (Exception e) {

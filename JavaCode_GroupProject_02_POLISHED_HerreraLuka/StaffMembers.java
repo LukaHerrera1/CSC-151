@@ -37,7 +37,7 @@ public class StaffMembers {
         }
     }
     public StaffMembers() {
-        readMainStaffFromCSV("JavaCode_GroupProject_02_WORKING_HerreraLuka/main_staff.csv");
+        readMainStaffFromCSV("JavaCode_GroupProject_02_POLISHED_HerreraLuka/main_staff.csv");
         JFrame frame = new JFrame("Staff Members");
         frame.setSize(400, 500);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
