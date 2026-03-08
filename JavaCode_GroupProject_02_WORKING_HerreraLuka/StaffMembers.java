@@ -1,5 +1,10 @@
 package JavaCode_GroupProject_02_WORKING_HerreraLuka;  
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.tree.*;
 
@@ -24,6 +29,28 @@ public class StaffMembers {
         }
     }
 
+    public static void readSecondaryStaffFromCSV(String filename) {
+        java.util.List<StaffMember> staffList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line = reader.readLine(); // Skip header if there is one
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",", 3); // department, name, title
+                if (parts.length == 3) {
+                    String dept = parts[0].trim();
+                    String name = parts[1].trim();
+                    String title = parts[2].trim();
+                    // Prepend department to name so it shows in tree
+                    staffList.add(new StaffMember(dept + " - " + name, title));
+                }
+            }
+            if (!staffList.isEmpty()) {
+                secondaryStaff = staffList.toArray(new StaffMember[0]);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading secondary staff file: " + e.getMessage());
+        }
+    }
+
 
     public static void writeMainStaffToCSV(String filename) {
         try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileWriter(filename))) {
@@ -38,7 +65,28 @@ public class StaffMembers {
         }
     }
 
+
+public static void writeSecondaryStaffToCSV(String filename) {
+    try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileWriter(filename))) {
+        writer.println("Department,Name,Title");
+        for (StaffMember member : secondaryStaff) {
+            // Assuming the department is stored in the name like "Department - Name"
+            String[] parts = member.name.split(" - ", 2);
+            String dept = parts.length > 1 ? parts[0].replace(",", " ") : "Unknown";
+            String name = parts.length > 1 ? parts[1].replace(",", " ") : parts[0].replace(",", " ");
+            String title = member.title.replace(",", " ");
+            writer.println(dept + "," + name + "," + title);
+        }
+    } catch (java.io.IOException e) {
+        System.err.println("Error writing secondary staff file: " + e.getMessage());
+    }
+}
+
     public StaffMembers() {
+
+        readMainStaffFromCSV("JavaCode_GroupProject_02_WORKING_HerreraLuka/main_staff.csv");
+          readSecondaryStaffFromCSV("JavaCode_GroupProject_02_WORKING_HerreraLuka/secondary_staff.csv");
+
         JFrame frame = new JFrame("Staff Members");
         frame.setSize(400, 500);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -164,8 +212,8 @@ public class StaffMembers {
         }
     }
 
-
     public static StaffMember[] mainStaff = new StaffMember[0];
+    public static StaffMember[] secondaryStaff = new StaffMember[0];
 
     public static void main(String[] args) {
         String csvFileName = "main_staff.csv";
