@@ -47,14 +47,12 @@ public class PlayersWindow {
 
                     String name = JOptionPane.showInputDialog("Enter player name:");
                     String number = JOptionPane.showInputDialog("Enter jersey number:");
-                    String role = JOptionPane.showInputDialog("Enter role (optional):");
-
+                
                     if (position == null || name == null || number == null) return;
-                    if (role == null) role = ""; // leave blank if not provided
 
                     FileWriter writer = new FileWriter("JavaCode_GroupProject_02_WORKING_HerreraLuka/player.csv", true);
                     // CSV format: Type,Name,Position,Number,Role
-                    writer.write("Player," + name + "," + position + "," + number + "," + role + "\n");
+                    writer.write("Player," + name + "," + position + "," + number + "," + "" + "\n");
                     writer.close();
 
                     JOptionPane.showMessageDialog(null, "Player added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
