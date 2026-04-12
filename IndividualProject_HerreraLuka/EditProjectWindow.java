@@ -53,11 +53,11 @@ public class EditProjectWindow {
         formPanel.add(locationfield);
         formPanel.add(dimensionsLabel);
         formPanel.add(new JLabel());
-        formPanel.add(new JLabel("Length:"));
+        formPanel.add(new JLabel("Length (ft):"));
         formPanel.add(lengthfield);
-        formPanel.add(new JLabel("Width:"));
+        formPanel.add(new JLabel("Width (ft):"));
         formPanel.add(widthfield);
-        formPanel.add(new JLabel("Slab Thickness:"));
+        formPanel.add(new JLabel("Slab Thickness (ft):"));
         formPanel.add(slabfield);
         formPanel.add(workerinfoLabel);
         formPanel.add(new JLabel());

@@ -26,13 +26,13 @@ public class StartProjectWindow {
         JLabel dimensionsLabel = new JLabel("|Dimensions Information|");
         dimensionsLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 
-        JLabel lengthLabel = new JLabel("Length:");
+        JLabel lengthLabel = new JLabel("Length (ft):");
         JTextField lengthfield = new JTextField();
 
-        JLabel widthLabel = new JLabel("Width:");
+        JLabel widthLabel = new JLabel("Width (ft):");
         JTextField widthfield = new JTextField();
 
-        JLabel slabthicknessLabel = new JLabel("Slab Thickness:");
+        JLabel slabthicknessLabel = new JLabel("Slab Thickness (ft):");
         JTextField slabthicknessfield = new JTextField();
 
         JLabel workerinfoLabel = new JLabel("|Employee Information|");
