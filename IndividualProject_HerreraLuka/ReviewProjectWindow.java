@@ -9,17 +9,12 @@ public class ReviewProjectWindow {
         JFrame frame = new JFrame("Review Project Data");
         frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
-
         JScrollPane scrollPane = new JScrollPane(textArea);
         frame.add(scrollPane);
-
         String projectName = JOptionPane.showInputDialog(frame, "Enter Project Name:");
-
         boolean found = false;
-
         try (BufferedReader reader = new BufferedReader(new FileReader("IndividualProject_HerreraLuka/project_data.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -28,7 +23,6 @@ public class ReviewProjectWindow {
                 if (data[0].equalsIgnoreCase(projectName)) {
 
                     found = true;
-
                     double length = Double.parseDouble(data[2]);
                     double width = Double.parseDouble(data[3]);
                     double thickness = Double.parseDouble(data[4]);
@@ -36,10 +30,10 @@ public class ReviewProjectWindow {
                     double hours = Double.parseDouble(data[6]);
                     double laborCost = Double.parseDouble(data[7]);
                     double materialCost = Double.parseDouble(data[8]);
-
+                    double discount = Double.parseDouble(data[9]);
                     double area = length * width;
                     double volume = area * thickness;
-                    double totalCost = laborCost + materialCost;
+                    double totalCost = (Math.max(1, workers) * laborCost * Math.max(1, hours) + materialCost * volume) * (1 - Math.max(0, discount) / 100);
 
                     textArea.setText(
                             "PROJECT REVIEW\n\n" +
@@ -52,6 +46,7 @@ public class ReviewProjectWindow {
                             "Hours: " + hours + "\n\n" +
                             "AREA: " + area + "\n" +
                             "VOLUME: " + volume + "\n" +
+                            "DISCOUNT: " + discount + "\n" +
                             "TOTAL COST: $" + totalCost
                     );
            break;

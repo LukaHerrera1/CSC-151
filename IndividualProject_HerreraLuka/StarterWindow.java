@@ -14,11 +14,13 @@ public class StarterWindow {
         JButton startprojectButton = new JButton("Start Project");
         JButton editprojectButton = new JButton("Edit Project");
         JButton reviewprojectButton = new JButton("Review Project");
+        JButton projectlistButton = new JButton("Project List");
         JButton exitButton = new JButton("Exit");
         frame.add(welcomeLabel);
         frame.add(startprojectButton);
         frame.add(editprojectButton);
         frame.add(reviewprojectButton);
+        frame.add(projectlistButton);
         frame.add(exitButton);
             startprojectButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
@@ -34,6 +36,11 @@ public class StarterWindow {
             reviewprojectButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
         new ReviewProjectWindow();
+    }
+});
+                projectlistButton.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        new ProjectListWindow();
     }
 });
             exitButton.addActionListener(new ActionListener() {

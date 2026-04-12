@@ -6,7 +6,6 @@ import java.awt.*;
 import java.io.*;
 
 public class EditProjectWindow {
-
     JTextField namefield = new JTextField();
     JTextField locationfield = new JTextField();
     JTextField lengthfield = new JTextField();
@@ -16,28 +15,31 @@ public class EditProjectWindow {
     JTextField hoursfield = new JTextField();
     JTextField laborcostfield = new JTextField();
     JTextField materialcostfield = new JTextField();
-
+    JTextField discountfield = new JTextField();
     String originalProjectName;
 
     public EditProjectWindow() {
-
         JFrame frame = new JFrame("Edit Project");
         frame.setSize(400, 500);
         frame.setLayout(new BorderLayout());
+        JPanel formPanel = new JPanel(new GridLayout(15, 2, 10, 10));
 
-        JPanel formPanel = new JPanel(new GridLayout(14, 2, 10, 10));
-
-        JLabel welcomeLabel = new JLabel("|Edit Project Details|");
+        JLabel welcomeLabel = new JLabel("|Edit Project Details (LOAD PROJECT FIRST TO EDIT)|");
         welcomeLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 
-         JLabel dimensionsLabel = new JLabel("|Dimensions Information|");
+        JLabel dimensionsLabel = new JLabel("|Dimensions Information|");
         dimensionsLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 
-          JLabel workerinfoLabel = new JLabel("|Employee Information|");
+        JLabel workerinfoLabel = new JLabel("|Employee Information|");
         workerinfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 
-          JLabel materialinfoLabel = new JLabel("|Material Information|");
+        JLabel materialinfoLabel = new JLabel("|Material Information|");
         materialinfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+
+        JLabel extrasLabel = new JLabel("|Extra's|");
+        extrasLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+
+        JLabel discountLabel = new JLabel("Discount:");
 
         formPanel.add(welcomeLabel);
         formPanel.add(new JLabel());
@@ -65,6 +67,10 @@ public class EditProjectWindow {
         formPanel.add(new JLabel());
         formPanel.add(new JLabel("Material Cost:"));
         formPanel.add(materialcostfield);
+        formPanel.add(extrasLabel);
+        formPanel.add(new JLabel());
+        formPanel.add(discountLabel);
+        formPanel.add(discountfield);
 
         JPanel buttonPanel = new JPanel(new BorderLayout());
         JButton loadButton = new JButton("Load Project");
@@ -76,12 +82,10 @@ public class EditProjectWindow {
         buttonPanel.add(saveButton, BorderLayout.EAST);
         buttonPanel.add(reviewButton, BorderLayout.CENTER);
         buttonPanel.add(cancelButton, BorderLayout.SOUTH);
-
          cancelButton.addActionListener(e -> {
             new StarterWindow();
             frame.dispose();
         });
-
          reviewButton.addActionListener(e -> {
             new ReviewProjectWindow();
             frame.dispose();
@@ -89,34 +93,46 @@ public class EditProjectWindow {
 
         frame.add(formPanel, BorderLayout.CENTER);
         frame.add(buttonPanel, BorderLayout.SOUTH);
-
         frame.setVisible(true);
-
-        loadButton.addActionListener(e -> {
+         loadButton.addActionListener(e -> {
             String name = JOptionPane.showInputDialog("Enter Project Name:");
             loadProject(name);
         });
-
         saveButton.addActionListener(e -> {
-            saveUpdatedProject();
-            JOptionPane.showMessageDialog(frame, "Project updated!");
-        });
+        String newName = namefield.getText();
+        boolean exists = false;
+        try (BufferedReader reader = new BufferedReader(
+            new FileReader("IndividualProject_HerreraLuka/project_data.csv"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] data = line.split(",");
+            if (data[0].equalsIgnoreCase(newName) &&
+                !data[0].equalsIgnoreCase(originalProjectName)) {
+                exists = true;
+                break;
+            }
+        }
+    } catch (Exception ex) {
+    ex.printStackTrace();
+    }
+        if (exists) {
+            JOptionPane.showMessageDialog(frame,
+        "Another project already has this name!");
+        return;
+    }
+    saveUpdatedProject();
+    JOptionPane.showMessageDialog(frame, "Project updated!");
+});
     }
         public void loadProject(String projectName) {
-
         try (BufferedReader reader = new BufferedReader(
                 new FileReader("IndividualProject_HerreraLuka/project_data.csv"))) {
-
             String line;
-
             while ((line = reader.readLine()) != null) {
-
                 String[] data = line.split(",");
-
                 if (data[0].equalsIgnoreCase(projectName)) {
 
                     originalProjectName = projectName;
-
                     namefield.setText(data[0]);
                     locationfield.setText(data[1]);
                     lengthfield.setText(data[2]);
@@ -126,13 +142,12 @@ public class EditProjectWindow {
                     hoursfield.setText(data[6]);
                     laborcostfield.setText(data[7]);
                     materialcostfield.setText(data[8]);
+                    discountfield.setText(data[9]);
 
                     writeTempFile(data);
-
                     break;
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,33 +155,24 @@ public class EditProjectWindow {
         public void writeTempFile(String[] data) {
         try {
             FileWriter writer = new FileWriter("temp_project.txt");
-
             for (String item : data) {
                 writer.write(item + "\n");
             }
-
             writer.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
         public void saveUpdatedProject() {
-
         File inputFile = new File("IndividualProject_HerreraLuka/project_data.csv");
         File tempFile = new File("temp.csv");
-
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
              FileWriter writer = new FileWriter(tempFile)) {
-
             String line;
-
             while ((line = reader.readLine()) != null) {
-
                 String[] data = line.split(",");
-
                 if (data[0].equalsIgnoreCase(originalProjectName)) {
-
+                    
                     writer.write(
                             namefield.getText() + "," +
                             locationfield.getText() + "," +
@@ -176,20 +182,17 @@ public class EditProjectWindow {
                             workersfield.getText() + "," +
                             hoursfield.getText() + "," +
                             laborcostfield.getText() + "," +
-                            materialcostfield.getText() + "\n"
+                            materialcostfield.getText() + "," +
+                            discountfield.getText() + "\n"
                     );
-
                 } else {
                     writer.write(line + "\n");
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         inputFile.delete();
         tempFile.renameTo(inputFile);
     }
-
 }
