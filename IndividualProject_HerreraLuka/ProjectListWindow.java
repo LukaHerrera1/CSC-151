@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
 
 public class ProjectListWindow {
     public ProjectListWindow() {
-        JFrame frame = new JFrame("|Project Names:|");
+        JFrame frame = new JFrame("Project Names");
         frame.setSize(300, 400);
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);

@@ -20,12 +20,14 @@ public class EditProjectWindow {
 
     public EditProjectWindow() {
         JFrame frame = new JFrame("Edit Project");
-        frame.setSize(400, 500);
+        frame.setSize(500, 600);
         frame.setLayout(new BorderLayout());
-        JPanel formPanel = new JPanel(new GridLayout(15, 2, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(16, 2, 10, 10));
 
-        JLabel welcomeLabel = new JLabel("|Edit Project Details (LOAD PROJECT FIRST TO EDIT)|");
+        JLabel welcomeLabel = new JLabel("|Edit Project Details|");
         welcomeLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+        JLabel importantLabel = new JLabel("*Make sure to load the project before editing*");
+        importantLabel.setFont(new Font("Dialog", Font.ITALIC, 12));
 
         JLabel dimensionsLabel = new JLabel("|Dimensions Information|");
         dimensionsLabel.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -43,6 +45,8 @@ public class EditProjectWindow {
 
         formPanel.add(welcomeLabel);
         formPanel.add(new JLabel());
+        formPanel.add(importantLabel);
+        formPanel.add(new JLabel());
         formPanel.add(new JLabel("Project Name:"));
         formPanel.add(namefield);
         formPanel.add(new JLabel("Location:"));
@@ -57,15 +61,15 @@ public class EditProjectWindow {
         formPanel.add(slabfield);
         formPanel.add(workerinfoLabel);
         formPanel.add(new JLabel());
-        formPanel.add(new JLabel("Workers:"));
+        formPanel.add(new JLabel("Number of Employees:"));
         formPanel.add(workersfield);
         formPanel.add(new JLabel("Labor Hours:"));
         formPanel.add(hoursfield);
-        formPanel.add(new JLabel("Labor Cost:"));
+        formPanel.add(new JLabel("Labor Cost Per Hour:"));
         formPanel.add(laborcostfield);
         formPanel.add(materialinfoLabel);
         formPanel.add(new JLabel());
-        formPanel.add(new JLabel("Material Cost:"));
+        formPanel.add(new JLabel("Material Cost Per ft³:"));
         formPanel.add(materialcostfield);
         formPanel.add(extrasLabel);
         formPanel.add(new JLabel());
@@ -172,7 +176,7 @@ public class EditProjectWindow {
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equalsIgnoreCase(originalProjectName)) {
-                    
+
                     writer.write(
                             namefield.getText() + "," +
                             locationfield.getText() + "," +

@@ -9,7 +9,7 @@ import java.io.IOException;
 public class StartProjectWindow {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Start New Project");
-        frame.setSize(400, 500);
+        frame.setSize(500, 600);
         frame.setVisible(true);
         frame.setLayout(new BorderLayout());
         JPanel formPanel = new JPanel(new GridLayout(15, 2,10,10));
@@ -41,16 +41,16 @@ public class StartProjectWindow {
         JLabel numberofemployeesLabel = new JLabel("Number of Employees:");
         JTextField numberofemployeesfield = new JTextField();
 
-        JLabel estimatelaborhoursLabel = new JLabel("Estimated Labor Hours:");
+        JLabel estimatelaborhoursLabel = new JLabel("Labor Hours:");
         JTextField estimatelaborhoursfield = new JTextField();
 
-        JLabel estimatelaborcostLabel = new JLabel("Estimated Labor Cost Per Hour:");
+        JLabel estimatelaborcostLabel = new JLabel("Labor Cost Per Hour:");
         JTextField estimatelaborcostfield = new JTextField();
 
         JLabel materialinfoLabel = new JLabel("|Material Information|");
         materialinfoLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 
-        JLabel materialcostLabel = new JLabel("Estimated Material Cost (ft³):");
+        JLabel materialcostLabel = new JLabel("Material Cost Per ft³:");
         JTextField materialcostfield = new JTextField();
 
         JLabel extrasLabel = new JLabel("|Extra's|");

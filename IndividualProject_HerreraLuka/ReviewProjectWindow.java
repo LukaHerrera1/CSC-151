@@ -33,7 +33,8 @@ public class ReviewProjectWindow {
                     double discount = Double.parseDouble(data[9]);
                     double area = length * width;
                     double volume = area * thickness;
-                    double totalCost = (Math.max(1, workers) * laborCost * Math.max(1, hours) + materialCost * volume) * (1 - Math.max(0, discount) / 100);
+                    double laborcosttotal = Math.max(1, workers) * laborCost * Math.max(1, hours);                   
+                    double totalCost = (laborcosttotal + materialCost * volume) * (1 - Math.max(0, discount) / 100);
 
                     textArea.setText(
                             "PROJECT REVIEW\n\n" +
@@ -47,6 +48,8 @@ public class ReviewProjectWindow {
                             "AREA: " + area + "\n" +
                             "VOLUME: " + volume + "\n" +
                             "DISCOUNT: " + discount + "\n" +
+                            "LABOR COST: $" + laborcosttotal + "\n" +
+                            "MATERIAL COST: $" + (materialCost * volume) + "\n" +
                             "TOTAL COST: $" + totalCost
                     );
            break;
