@@ -1,0 +1,69 @@
+{
+  "name": "Estimate",
+  "type": "object",
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "title": "Project Name"
+    },
+    "location": {
+      "type": "string",
+      "title": "Location"
+    },
+    "length_ft": {
+      "type": "number",
+      "title": "Length (ft)"
+    },
+    "width_ft": {
+      "type": "number",
+      "title": "Width (ft)"
+    },
+    "thickness_in": {
+      "type": "number",
+      "title": "Thickness (in)"
+    },
+    "num_workers": {
+      "type": "number",
+      "title": "Number of Workers"
+    },
+    "hourly_rate": {
+      "type": "number",
+      "title": "Hourly Labor Rate ($)"
+    },
+    "concrete_cost_per_cf": {
+      "type": "number",
+      "title": "Concrete Cost per Cu Ft ($)"
+    },
+    "area_sqft": {
+      "type": "number",
+      "title": "Area (sq ft)"
+    },
+    "volume_cuft": {
+      "type": "number",
+      "title": "Volume (cu ft)"
+    },
+    "concrete_cost": {
+      "type": "number",
+      "title": "Concrete Cost ($)"
+    },
+    "labor_hours": {
+      "type": "number",
+      "title": "Labor Hours"
+    },
+    "labor_cost": {
+      "type": "number",
+      "title": "Labor Cost ($)"
+    },
+    "total_cost": {
+      "type": "number",
+      "title": "Total Cost ($)"
+    }
+  },
+  "required": [
+    "project_name",
+    "length_ft",
+    "width_ft",
+    "thickness_in",
+    "concrete_cost_per_cf"
+  ]
+}
